@@ -15,17 +15,28 @@ var task =  function(request, callback){
 			//Wyświetlanie info o instancji EC2
 			console.log(data);
 		}
-	})
-	
-	var params = {
-  InstanceIds: [
-     "i-09676e297268a3087"
+		
+		var params = {
+  ImageId: "ami-076309742d466ad69", 
+  InstanceType: "t2.micro",  
+  MaxCount: 1, 
+  MinCount: 1, 
+  SecurityGroupIds: [
+     "sg-0458e41a07621b8df"
   ]
  };
- ec2.startInstances(params, function(err, data) {
+ ec2.runInstances(params, function(err, data) {
    if (err) console.log(err, err.stack); // an error occurred
-   else     console.log(data);           // successful response
+   else  {
+	   console.log("DnsName: "+data.Instances[0].PublicDnsName);
+	   console.log("IP: "+data.Instances[0].PrivateIpAddress);
+   }          // successful response
+   /*
+   data = {
+   }
+   */
+ });
+	})
 	
 }
-
 exports.lab = task
