@@ -15,7 +15,8 @@ var task =  function(request, callback){
 			//Wyświetlanie info o instancji EC2
 			console.log(data);
 		}
-		
+	});
+	
 		var params = {
   ImageId: "ami-076309742d466ad69", 
   InstanceType: "t2.micro",  
@@ -36,7 +37,7 @@ var task =  function(request, callback){
    }
    */
  });
-	})
+	
 	
 }
 exports.lab = task
