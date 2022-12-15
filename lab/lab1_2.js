@@ -17,25 +17,17 @@ var task =  function(request, callback){
 		}
 	});
 	
-		var params = {
-  ImageId: "ami-076309742d466ad69", 
-  InstanceType: "t2.micro",  
-  MaxCount: 1, 
-  MinCount: 1, 
-  SecurityGroupIds: [
-     "sg-0458e41a07621b8df"
-  ]
- };
+	var params = {
+		ImageId: "ami-06ce824c157700cd2",   
+		MaxCount: 1, 
+		MinCount: 1, 
+	};
  ec2.runInstances(params, function(err, data) {
    if (err) console.log(err, err.stack); // an error occurred
    else  {
 	   console.log("DnsName: "+data.Instances[0].PublicDnsName);
 	   console.log("IP: "+data.Instances[0].PrivateIpAddress);
    }          // successful response
-   /*
-   data = {
-   }
-   */
  });
 	
 	
