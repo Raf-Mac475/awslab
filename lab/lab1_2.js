@@ -25,11 +25,20 @@ var task =  function(request, callback){
  ec2.runInstances(params, function(err, data) {
    if (err) console.log(err, err.stack); // an error occurred
    else  {
-	   console.log("DnsName: "+data.Instances[0].PublicDnsName);
 	   console.log("IP: "+data.Instances[0].PrivateIpAddress);
+	   console.log("DnsName: "+data.Instances[0].PublicDnsName);
    }          // successful response
  });
 	
+var params = {
+  AutoScalingGroupName: "MackiewiczASG", 
+  DesiredCapacity: 1, 
+  HonorCooldown: true
+ };
+ autoscaling.setDesiredCapacity(params, function(err, data) {
+   if (err) console.log(err, err.stack); // an error occurred
+   else     console.log(data);           // successful response
+ });
 	
 }
 exports.lab = task
